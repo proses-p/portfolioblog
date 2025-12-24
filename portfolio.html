@@ -1,0 +1,626 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>My Projects Portfolio</title>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+<style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            background: linear-gradient(135deg, #0f2027 0%, #203a43 50%, #2c5364 100%);
+            color: #fff;
+            min-height: 100vh;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        .page-header {
+            text-align: center;
+            margin-bottom: 50px;
+            padding-top: 20px;
+        }
+
+        .page-header h1 {
+            font-size: 3.5rem;
+            background: linear-gradient(to right, #00b4db, #0083b0);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            margin-bottom: 15px;
+            font-weight: 800;
+            letter-spacing: 1px;
+        }
+
+        .page-header p {
+            font-size: 1.2rem;
+            color: #b0bec5;
+            max-width: 800px;
+            margin: 0 auto;
+            line-height: 1.6;
+        }
+
+        .specializations-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+            gap: 30px;
+            margin-bottom: 60px;
+        }
+
+        .specialization-card {
+            background: rgba(255, 255, 255, 0.08);
+            backdrop-filter: blur(10px);
+            border-radius: 20px;
+            overflow: hidden;
+            transition: all 0.4s ease;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+        }
+
+        .specialization-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.3);
+            border-color: rgba(0, 180, 219, 0.5);
+        }
+
+        .card-header {
+            padding: 25px;
+            background: rgba(0, 0, 0, 0.2);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .card-icon {
+            width: 60px;
+            height: 60px;
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.8rem;
+        }
+
+        .java-icon { background: linear-gradient(135deg, #f89820, #e76f00); }
+        .python-icon { background: linear-gradient(135deg, #3776ab, #306998); }
+        .database-icon { background: linear-gradient(135deg, #00758f, #005f73); }
+        .ai-icon { background: linear-gradient(135deg, #ff6b6b, #ee5a52); }
+        .flutter-icon { background: linear-gradient(135deg, #02569b, #0175c2); }
+
+        .card-header h2 {
+            font-size: 1.8rem;
+            font-weight: 700;
+        }
+
+        .card-body {
+            padding: 25px;
+        }
+
+        .card-description {
+            color: #cfd8dc;
+            line-height: 1.7;
+            margin-bottom: 25px;
+            font-size: 1rem;
+        }
+
+        .skills-list {
+            margin-bottom: 25px;
+        }
+
+        .skills-list h3 {
+            font-size: 1.2rem;
+            margin-bottom: 15px;
+            color: #81d4fa;
+        }
+
+        .skills {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+
+        .skill-tag {
+            background: rgba(0, 180, 219, 0.15);
+            border: 1px solid rgba(0, 180, 219, 0.3);
+            padding: 6px 15px;
+            border-radius: 20px;
+            font-size: 0.9rem;
+            color: #80deea;
+        }
+
+        .projects-section {
+            margin-top: 25px;
+        }
+
+        .projects-section h3 {
+            font-size: 1.2rem;
+            margin-bottom: 15px;
+            color: #81d4fa;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .projects-section h3 i {
+            color: #4fc3f7;
+        }
+
+        .project-item {
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 12px;
+            padding: 18px;
+            margin-bottom: 15px;
+            border-left: 4px solid #00b4db;
+            transition: all 0.3s ease;
+        }
+
+        .project-item:hover {
+            background: rgba(255, 255, 255, 0.08);
+            transform: translateX(5px);
+        }
+
+        .project-title {
+            font-size: 1.1rem;
+            font-weight: 600;
+            margin-bottom: 8px;
+            color: #fff;
+        }
+
+        .project-description {
+            color: #b0bec5;
+            font-size: 0.95rem;
+            margin-bottom: 12px;
+            line-height: 1.5;
+        }
+
+        .project-links {
+            display: flex;
+            gap: 15px;
+        }
+
+        .project-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            color: #4fc3f7;
+            text-decoration: none;
+            font-size: 0.9rem;
+            padding: 6px 15px;
+            border-radius: 20px;
+            background: rgba(79, 195, 247, 0.1);
+            border: 1px solid rgba(79, 195, 247, 0.2);
+            transition: all 0.3s ease;
+        }
+
+        .project-link:hover {
+            background: rgba(79, 195, 247, 0.2);
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(79, 195, 247, 0.1);
+        }
+
+        /* Responsive Design */
+        @media (max-width: 1200px) {
+            .specializations-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        @media (max-width: 768px) {
+            .specializations-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .page-header h1 {
+                font-size: 2.5rem;
+            }
+
+            .page-header p {
+                font-size: 1rem;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .container {
+                padding: 10px;
+            }
+
+            .card-header {
+                flex-direction: column;
+                text-align: center;
+                gap: 10px;
+            }
+
+            .project-links {
+                flex-direction: column;
+                gap: 10px;
+            }
+        }
+
+        /* Custom scrollbar */
+        ::-webkit-scrollbar {
+            width: 10px;
+        }
+
+        ::-webkit-scrollbar-track {
+            background: rgba(255, 255, 255, 0.05);
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: rgba(0, 180, 219, 0.5);
+            border-radius: 5px;
+        }
+
+        ::-webkit-scrollbar-thumb:hover {
+            background: rgba(0, 180, 219, 0.7);
+        }
+        .back-btn a {
+            display: flex;
+            justify-content: start;
+            text-decoration: none;
+            color: white;
+        }
+</style>
+</head>
+<body>
+<div class="container">
+<div class="page-header">
+<h1>My Technical Specializations</h1>
+<p>Explore my expertise across various technologies with real-world projects. Each specialization includes detailed explanations, key skills, and links to GitHub repositories where you can view the source code and documentation.</p>
+<div class="back-btn">
+    <a href="mine.html">Back</a>
+</div>
+</div>
+
+<div class="specializations-grid">
+<!-- Java Specialization Card -->
+<div class="specialization-card">
+<div class="card-header">
+<div class="card-icon java-icon">
+<i class="fab fa-java"></i>
+</div>
+<h2>Java Development</h2>
+</div>
+<div class="card-body">
+<p class="card-description">
+    Enterprise-level Java development with Spring Boot, Microservices architecture, and robust backend systems. Focus on scalable, maintainable code with comprehensive testing.
+</p>
+
+<div class="skills-list">
+<h3>Core Skills</h3>
+<div class="skills">
+<span class="skill-tag">Spring Boot</span>
+<span class="skill-tag">Microservices</span>
+<span class="skill-tag">Hibernate</span>
+<span class="skill-tag">REST APIs</span>
+<span class="skill-tag">Maven</span>
+<span class="skill-tag">JUnit</span>
+</div>
+</div>
+
+<div class="projects-section">
+<h3><i class="fas fa-code-branch"></i> Java Projects</h3>
+
+<div class="project-item">
+<div class="project-title">E-Commerce Backend API</div>
+<p class="project-description">A complete RESTful API for e-commerce platform with user authentication, product management, and order processing.</p>
+<div class="project-links">
+<a href="https://github.com/yourusername/ecommerce-java-api" target="_blank" class="project-link">
+<i class="fab fa-github"></i> View on GitHub
+</a>
+<a href="https://github.com/yourusername/ecommerce-java-api/blob/main/README.md" target="_blank" class="project-link">
+<i class="fas fa-book"></i> Documentation
+</a>
+</div>
+</div>
+
+<div class="project-item">
+<div class="project-title">Hotel Management System</div>
+<p class="project-description">Desktop application for hotel booking and management using Java Swing and MySQL database.</p>
+<div class="project-links">
+<a href="https://github.com/yourusername/hotel-management-system" target="_blank" class="project-link">
+<i class="fab fa-github"></i> View on GitHub
+</a>
+</div>
+</div>
+</div>
+</div>
+</div>
+
+<!-- Python Specialization Card -->
+<div class="specialization-card">
+<div class="card-header">
+<div class="card-icon python-icon">
+<i class="fab fa-python"></i>
+</div>
+<h2>Python Development</h2>
+</div>
+<div class="card-body">
+<p class="card-description">
+    Versatile Python programming with expertise in data analysis, automation scripts, web development with Django/Flask, and machine learning applications.
+</p>
+
+<div class="skills-list">
+<h3>Core Skills</h3>
+<div class="skills">
+<span class="skill-tag">Django</span>
+<span class="skill-tag">Flask</span>
+<span class="skill-tag">Pandas</span>
+<span class="skill-tag">NumPy</span>
+<span class="skill-tag">Automation</span>
+<span class="skill-tag">Web Scraping</span>
+</div>
+</div>
+
+<div class="projects-section">
+<h3><i class="fas fa-code-branch"></i> Python Projects</h3>
+
+<div class="project-item">
+<div class="project-title">Stock Market Analyzer</div>
+<p class="project-description">Python application that analyzes stock market data, provides insights, and generates predictive models using ML algorithms.</p>
+<div class="project-links">
+<a href="https://github.com/yourusername/stock-market-analyzer" target="_blank" class="project-link">
+<i class="fab fa-github"></i> View on GitHub
+</a>
+<a href="https://github.com/yourusername/stock-market-analyzer/blob/main/docs/usage.md" target="_blank" class="project-link">
+<i class="fas fa-chart-line"></i> Live Demo
+</a>
+</div>
+</div>
+
+<div class="project-item">
+<div class="project-title">Automated Report Generator</div>
+<p class="project-description">Tool that automatically generates and emails PDF reports from database data using Pandas and ReportLab.</p>
+<div class="project-links">
+<a href="https://github.com/yourusername/auto-report-generator" target="_blank" class="project-link">
+<i class="fab fa-github"></i> View on GitHub
+</a>
+</div>
+</div>
+</div>
+</div>
+</div>
+
+<!-- Database Specialization Card -->
+<div class="specialization-card">
+<div class="card-header">
+<div class="card-icon database-icon">
+<i class="fas fa-database"></i>
+</div>
+<h2>Database Management</h2>
+</div>
+<div class="card-body">
+<p class="card-description">
+    Designing, implementing, and optimizing SQL and NoSQL databases. Expertise in data modeling, query optimization, and database administration.
+</p>
+
+<div class="skills-list">
+<h3>Core Skills</h3>
+<div class="skills">
+<span class="skill-tag">MySQL</span>
+<span class="skill-tag">PostgreSQL</span>
+<span class="skill-tag">MongoDB</span>
+<span class="skill-tag">Redis</span>
+<span class="skill-tag">Database Design</span>
+<span class="skill-tag">Query Optimization</span>
+</div>
+</div>
+
+<div class="projects-section">
+<h3><i class="fas fa-code-branch"></i> Database Projects</h3>
+
+<div class="project-item">
+<div class="project-title">University Database System</div>
+<p class="project-description">Complete database design for university management with complex queries, stored procedures, and optimization techniques.</p>
+<div class="project-links">
+<a href="https://github.com/yourusername/university-database" target="_blank" class="project-link">
+<i class="fab fa-github"></i> View on GitHub
+</a>
+<a href="https://github.com/yourusername/university-database/blob/main/ER_Diagram.pdf" target="_blank" class="project-link">
+<i class="fas fa-project-diagram"></i> ER Diagram
+</a>
+</div>
+</div>
+
+<div class="project-item">
+<div class="project-title">E-commerce Data Warehouse</div>
+<p class="project-description">Data warehouse implementation for e-commerce analytics with ETL processes and OLAP cubes.</p>
+<div class="project-links">
+<a href="https://github.com/yourusername/ecommerce-data-warehouse" target="_blank" class="project-link">
+<i class="fab fa-github"></i> View on GitHub
+</a>
+</div>
+</div>
+</div>
+</div>
+</div>
+
+<!-- AI Specialization Card -->
+<div class="specialization-card">
+<div class="card-header">
+<div class="card-icon ai-icon">
+<i class="fas fa-brain"></i>
+</div>
+<h2>Artificial Intelligence</h2>
+</div>
+<div class="card-body">
+<p class="card-description">
+    Building intelligent systems with machine learning, deep learning, and natural language processing. Creating models for prediction, classification, and automation.
+</p>
+
+<div class="skills-list">
+<h3>Core Skills</h3>
+<div class="skills">
+<span class="skill-tag">TensorFlow</span>
+<span class="skill-tag">PyTorch</span>
+<span class="skill-tag">Computer Vision</span>
+<span class="skill-tag">NLP</span>
+<span class="skill-tag">ML Algorithms</span>
+<span class="skill-tag">Model Deployment</span>
+</div>
+</div>
+
+<div class="projects-section">
+<h3><i class="fas fa-code-branch"></i> AI Projects</h3>
+
+<div class="project-item">
+<div class="project-title">Image Classification System</div>
+<p class="project-description">Deep learning model that classifies images into 100 categories with 95% accuracy using convolutional neural networks.</p>
+<div class="project-links">
+<a href="https://github.com/yourusername/image-classifier-cnn" target="_blank" class="project-link">
+<i class="fab fa-github"></i> View on GitHub
+</a>
+<a href="https://colab.research.google.com/github/yourusername/image-classifier-cnn" target="_blank" class="project-link">
+<i class="fas fa-rocket"></i> Try in Colab
+</a>
+</div>
+</div>
+
+<div class="project-item">
+<div class="project-title">Sentiment Analysis API</div>
+<p class="project-description">REST API that analyzes sentiment of text using NLP and deep learning models with real-time processing.</p>
+<div class="project-links">
+<a href="https://github.com/yourusername/sentiment-analysis-api" target="_blank" class="project-link">
+<i class="fab fa-github"></i> View on GitHub
+</a>
+</div>
+</div>
+</div>
+</div>
+</div>
+
+<!-- Flutter Specialization Card -->
+<div class="specialization-card">
+    <div class="card-header">
+        <div class="card-icon flutter-icon">
+            <i class="fab fa-flutter"></i>
+        </div>
+        <h2>Flutter Development</h2>
+    </div>
+        
+    <div class="card-body">
+        <p class="card-description">
+             Building beautiful, responsive cross-platform mobile applications with Flutter. Creating seamless user experiences for both iOS and Android from a single codebase.
+        </p>
+
+        <div class="skills-list">
+            <h3>Core Skills</h3>
+            <div class="skills">
+                <span class="skill-tag">Dart</span>
+                <span class="skill-tag">State Management</span>
+                <span class="skill-tag">Firebase</span>
+                <span class="skill-tag">REST APIs</span>
+                <span class="skill-tag">UI/UX Design</span>
+                <span class="skill-tag">App Publishing</span>
+            </div>
+        </div>
+
+        <div class="projects-section">
+            <h3><i class="fas fa-code-branch"></i> Flutter Projects</h3>
+
+            <div class="project-item">
+                <div class="project-title">Weather Forecast App</div>
+                <p class="project-description">Beautiful weather application with real-time updates, location services, and detailed forecasting using OpenWeather API.</p>
+                    <div class="project-links">
+                        <a href="https://github.com/yourusername/weather-flutter-app" target="_blank" class="project-link">
+                            <i class="fab fa-github"></i> View on GitHub
+                        </a>
+                        <a href="https://github.com/yourusername/weather-flutter-app/releases" target="_blank" class="project-link">
+                            <i class="fas fa-download"></i> Download APK
+                        </a>
+                    </div>
+            </div>
+
+            <div class="project-item">
+                <div class="project-title">E-Commerce Mobile App</div>
+                <p class="project-description">Full-featured mobile shopping app with user authentication, product browsing, cart, and payment integration.</p>
+                <div class="project-links">
+                    <a href="https://github.com/yourusername/flutter-ecommerce-app" target="_blank" class="project-link">
+                        <i class="fab fa-github"></i> View on GitHub
+                    </a>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>
+<!--simmple projects-->
+<div class="specialization-card">
+    <div class="card-header">
+        <h2>Simple Designed Projects</h2>
+    </div>
+
+    <div class="card-body">
+        <p class="card-description">
+             Projects designed by different languages and tools to solve different problems in real life situation
+        </p>
+
+        <div class="skills-list">
+            <h3>Core Skills</h3>
+            <div class="skills">
+                <span class="skill-tag">CMD</span>
+                <span class="skill-tag">MYSQL</span>
+                <span class="skill-tag">Firebase</span>
+                <span class="skill-tag">REST APIs</span>
+                <span class="skill-tag">UI/UX Design</span>
+                <span class="skill-tag">App Publishing</span>
+            </div>
+        </div>
+
+        <div class="projects-section">
+            <h3><i class="fas fa-code-branch"></i> Flutter Projects</h3>
+
+            <div class="project-item">
+                <div class="project-title">Weather Forecast App</div>
+                <p class="project-description">Beautiful weather application with real-time updates, location services, and detailed forecasting using OpenWeather API.</p>
+                    <div class="project-links">
+                        <a href="https://github.com/yourusername/weather-flutter-app" target="_blank" class="project-link">
+                            <i class="fab fa-github"></i> View on GitHub
+                        </a>
+                        <a href="https://github.com/yourusername/weather-flutter-app/releases" target="_blank" class="project-link">
+                            <i class="fas fa-download"></i> Download APK
+                        </a>
+                    </div>
+            </div>
+
+            <div class="project-item">
+                <div class="project-title">E-Commerce Mobile App</div>
+                <p class="project-description">Full-featured mobile shopping app with user authentication, product browsing, cart, and payment integration.</p>
+                <div class="project-links">
+                    <a href="https://github.com/yourusername/flutter-ecommerce-app" target="_blank" class="project-link">
+                        <i class="fab fa-github"></i> View on GitHub
+                    </a>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>
+</div>
+</div>
+
+<!-- Add Flutter icon since it's not in FontAwesome by default -->
+<script>
+        // Custom Flutter icon
+document.addEventListener('DOMContentLoaded', function() {
+constflutterIcons = document.querySelectorAll('.fa-flutter');
+flutterIcons.forEach(icon => {
+icon.innerHTML = 'F';
+icon.style.fontWeight = 'bold';
+icon.style.fontFamily = 'Arial, sans-serif';
+            });
+        });
+</script>
+</body>
+</html>

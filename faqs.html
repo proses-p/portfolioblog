@@ -1,0 +1,712 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Frequently Asked Questions</title>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+<style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            background: linear-gradient(135deg, #0c2461 0%, #1e3799 50%, #4a69bd 100%);
+            color: #fff;
+            min-height: 100vh;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        .page-header {
+            text-align: center;
+            margin-bottom: 60px;
+            padding-top: 40px;
+            position: relative;
+        }
+
+        .page-header h1 {
+            font-size: 3.8rem;
+            background: linear-gradient(to right, #ff9a9e, #fad0c4, #a18cd1);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            margin-bottom: 15px;
+            font-weight: 800;
+            letter-spacing: 1.5px;
+            text-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+        }
+
+        .page-header p {
+            font-size: 1.3rem;
+            color: #d1d8e0;
+            max-width: 700px;
+            margin: 0 auto;
+            line-height: 1.7;
+            padding: 0 20px;
+        }
+
+        .header-decoration {
+            position: absolute;
+            width: 200px;
+            height: 200px;
+            background: radial-gradient(circle, rgba(255, 154, 158, 0.1) 0%, transparent 70%);
+            top: 0;
+            left: 10%;
+            z-index: -1;
+        }
+
+        .header-decoration:nth-child(2) {
+            left: auto;
+            right: 10%;
+            background: radial-gradient(circle, rgba(161, 140, 209, 0.1) 0%, transparent 70%);
+        }
+
+        .search-section {
+            max-width: 700px;
+            margin: 0 auto 50px;
+            position: relative;
+        }
+
+        .search-box {
+            width: 100%;
+            padding: 20px 25px;
+            background: rgba(255, 255, 255, 0.1);
+            border: 2px solid rgba(255, 255, 255, 0.2);
+            border-radius: 15px;
+            font-size: 1.1rem;
+            color: white;
+            backdrop-filter: blur(10px);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+            transition: all 0.3s ease;
+        }
+
+        .search-box:focus {
+            outline: none;
+            border-color: #ff9a9e;
+            box-shadow: 0 10px 25px rgba(255, 154, 158, 0.2);
+            background: rgba(255, 255, 255, 0.15);
+        }
+
+        .search-box::placeholder {
+            color: rgba(255, 255, 255, 0.7);
+        }
+
+        .search-icon {
+            position: absolute;
+            right: 25px;
+            top: 50%;
+            transform: translateY(-50%);
+            color: rgba(255, 255, 255, 0.7);
+            font-size: 1.2rem;
+        }
+
+        .faq-categories {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 15px;
+            margin-bottom: 50px;
+        }
+
+        .category-btn {
+            padding: 12px 25px;
+            background: rgba(255, 255, 255, 0.08);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 50px;
+            color: #fff;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .category-btn:hover {
+            background: rgba(255, 255, 255, 0.15);
+            transform: translateY(-3px);
+        }
+
+        .category-btn.active {
+            background: linear-gradient(to right, #ff9a9e, #fad0c4);
+            color: #0c2461;
+            box-shadow: 0 5px 15px rgba(255, 154, 158, 0.3);
+        }
+
+        .faq-container {
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        .faq-item {
+            background: rgba(255, 255, 255, 0.07);
+            border-radius: 15px;
+            margin-bottom: 20px;
+            overflow: hidden;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+            transition: all 0.3s ease;
+        }
+
+        .faq-item:hover {
+            border-color: rgba(255, 154, 158, 0.3);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+        }
+
+        .faq-question {
+            padding: 25px 30px;
+            font-size: 1.3rem;
+            font-weight: 600;
+            color: white;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .faq-question:hover {
+            background: rgba(255, 255, 255, 0.05);
+        }
+
+        .faq-icon {
+            font-size: 1.2rem;
+            transition: transform 0.3s ease;
+            color: #ff9a9e;
+        }
+
+        .faq-answer {
+            padding: 0 30px;
+            max-height: 0;
+            overflow: hidden;
+            transition: all 0.5s ease;
+            color: #d1d8e0;
+            line-height: 1.7;
+            background: rgba(0, 0, 0, 0.1);
+        }
+
+        .faq-item.active .faq-answer {
+            padding: 30px;
+            max-height: 500px;
+        }
+
+        .faq-item.active .faq-icon {
+            transform: rotate(180deg);
+        }
+
+        .contact-promo {
+            text-align: center;
+            margin-top: 80px;
+            padding: 40px;
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 20px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .contact-promo h2 {
+            font-size: 2.2rem;
+            margin-bottom: 20px;
+            color: white;
+            background: linear-gradient(to right, #ff9a9e, #fad0c4);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+        }
+
+        .contact-promo p {
+            font-size: 1.1rem;
+            color: #d1d8e0;
+            max-width: 600px;
+            margin: 0 auto 30px;
+            line-height: 1.6;
+        }
+
+        .contact-btn {
+            display: inline-block;
+            padding: 15px 35px;
+            background: linear-gradient(to right, #ff9a9e, #fad0c4);
+            color: #0c2461;
+            text-decoration: none;
+            border-radius: 50px;
+            font-weight: 700;
+            font-size: 1.1rem;
+            transition: all 0.3s ease;
+            box-shadow: 0 5px 15px rgba(255, 154, 158, 0.3);
+        }
+
+        .contact-btn:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(255, 154, 158, 0.4);
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .page-header h1 {
+                font-size: 2.8rem;
+            }
+
+            .page-header p {
+                font-size: 1.1rem;
+            }
+
+            .faq-question {
+                font-size: 1.1rem;
+                padding: 20px;
+            }
+
+            .faq-answer {
+                padding: 0 20px;
+            }
+
+            .faq-item.active .faq-answer {
+                padding: 20px;
+            }
+
+            .contact-promo h2 {
+                font-size: 1.8rem;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .container {
+                padding: 10px;
+            }
+
+            .page-header h1 {
+                font-size: 2.2rem;
+            }
+
+            .category-btn {
+                padding: 10px 18px;
+                font-size: 0.9rem;
+            }
+
+            .search-box {
+                padding: 15px;
+                font-size: 1rem;
+            }
+        }
+
+        /* Custom scrollbar */
+        ::-webkit-scrollbar {
+            width: 10px;
+        }
+
+        ::-webkit-scrollbar-track {
+            background: rgba(255, 255, 255, 0.05);
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: linear-gradient(to bottom, #ff9a9e, #a18cd1);
+            border-radius: 5px;
+        }
+
+        ::-webkit-scrollbar-thumb:hover {
+            background: linear-gradient(to bottom, #ff7b7b, #8e7cc3);
+        }
+
+        /* Animation for FAQ items */
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .faq-item {
+            animation: fadeIn 0.5s ease forwards;
+            opacity: 0;
+        }
+
+        .faq-item:nth-child(1) { animation-delay: 0.1s; }
+        .faq-item:nth-child(2) { animation-delay: 0.2s; }
+        .faq-item:nth-child(3) { animation-delay: 0.3s; }
+        .faq-item:nth-child(4) { animation-delay: 0.4s; }
+        .faq-item:nth-child(5) { animation-delay: 0.5s; }
+        .faq-item:nth-child(6) { animation-delay: 0.6s; }
+        .faq-item:nth-child(7) { animation-delay: 0.7s; }
+        .faq-item:nth-child(8) { animation-delay: 0.8s; }
+        .faq-item:nth-child(9) { animation-delay: 0.9s; }
+        .faq-item:nth-child(10) { animation-delay: 1s; }
+</style>
+</head>
+<body>
+<div class="container">
+<div class="page-header">
+<div class="header-decoration"></div>
+<div class="header-decoration"></div>
+<h1>Frequently Asked Questions</h1>
+<p>Find answers to common questions about proses, skills, and this portfolio website. If you don't find what you're looking for, feel free to reach out!</p>
+</div>
+
+<div class="search-section">
+<input type="text" class="search-box" placeholder="Search for questions or keywords...">
+<div class="search-icon">
+<i class="fas fa-search"></i>
+</div>
+</div>
+
+<div class="faq-categories">
+<button class="category-btn active" data-category="all">All Questions</button>
+<button class="category-btn" data-category="personal">Personal</button>
+<button class="category-btn" data-category="skills">Skills & Experience</button>
+<button class="category-btn" data-category="projects">Projects</button>
+<button class="category-btn" data-category="website">Website</button>
+</div>
+
+<div class="faq-container">
+<!-- Personal Questions -->
+<div class="faq-item" data-category="personal">
+<div class="faq-question">
+<span>What's your background and how did you get into programming?</span>
+<i class="fas fa-chevron-down faq-icon"></i>
+</div>
+<div class="faq-answer">
+<p>I have a background in Computer technology with over 1 years of student learning experience. My journey into programming began during my university years when I discovered the power of turning ideas into functional applications. I started with Java and web development, then expanded into Python, databases, and mobile development as I worked on increasingly complex projects.</p>
+</div>
+</div>
+
+<!-- Skills Questions -->
+<div class="faq-item" data-category="skills">
+<div class="faq-question">
+<span>Which programming languages and technologies are you most proficient in?</span>
+<i class="fas fa-chevron-down faq-icon"></i>
+</div>
+<div class="faq-answer">
+<p>My core expertise lies in:
+<br><br>
+<strong>Backend Development:</strong> Java (Spring Boot), Python (Django/Flask), Node.js
+<br>
+<strong>Databases:</strong> MySQL, PostgreSQL, MongoDB, Redis
+<br>
+<strong>Frontend/Mobile:</strong> Flutter, React, HTML/CSS/JavaScript
+<br>
+<strong>AI/ML:</strong>TensorFlow, PyTorch, Scikit-learn
+<br>
+<strong>Tools:</strong>Git, Docker, AWS, CI/CD pipelines
+<br><br>
+                        I believe in mastering fundamentals while staying adaptable to new technologies.
+</p>
+</div>
+</div>
+
+<!-- Projects Questions -->
+<div class="faq-item" data-category="projects">
+<div class="faq-question">
+<span>What types of projects do you enjoy working on the most?</span>
+<i class="fas fa-chevron-down faq-icon"></i>
+</div>
+<div class="faq-answer">
+<p>I'm particularly passionate about projects that:
+<br><br>
+                        1. <strong>Solve real-world problems</strong> with practical applications
+<br>
+                        2. Involve <strong>data analysis and visualization</strong> to uncover insights
+<br>
+                        3. Require <strong>full-stack development</strong> with both backend and frontend components
+<br>
+                        4. Incorporate <strong>AI/ML elements</strong> to add intelligent features
+<br>
+                        5. Have <strong>scalability challenges</strong> that require thoughtful architecture
+<br><br>
+                        I enjoy the entire development lifecycle, from ideation to deployment and maintenance.
+</p>
+</div>
+</div>
+
+<!-- Website Questions -->
+<div class="faq-item" data-category="website">
+<div class="faq-question">
+<span>What technologies were used to build this portfolio website?</span>
+<i class="fas fa-chevron-down faq-icon"></i>
+</div>
+<div class="faq-answer">
+<p>This portfolio website is built with:
+<br><br>
+<strong>Frontend:</strong> HTML5, CSS3 (with Flexbox and Grid), Vanilla JavaScript
+<br>
+<strong>Styling:</strong> Custom CSS with gradients, animations, and responsive design
+<br>
+<strong>Icons:</strong> Font Awesome for scalable vector icons
+<br>
+<strong>Design:</strong> Custom design system with a consistent color palette
+<br>
+<strong>Hosting:</strong> Can be deployed on any static hosting (Netlify, GitHub Pages, etc.)
+<br><br>
+                        I chose to build it with pure HTML/CSS/JS to demonstrate fundamental web development skills without frameworks.
+</p>
+</div>
+</div>
+
+<!-- Personal Questions -->
+<div class="faq-item" data-category="personal">
+<div class="faq-question">
+<span>What's your approach to learning new technologies?</span>
+<i class="fas fa-chevron-down faq-icon"></i>
+</div>
+<div class="faq-answer">
+<p>My learning approach follows a structured process:
+<br><br>
+                        1. <strong>Foundation First:</strong> Start with official documentation and core concepts
+<br>
+                        2. <strong>Practical Application:</strong> Build small projects to apply what I've learned
+<br>
+                        3. <strong>Deep Dive:</strong> Explore advanced features and best practices
+<br>
+                        4. <strong>Community Engagement:</strong> Participate in forums, read blogs, watch tutorials
+<br>
+                        5. <strong>Teach Others:</strong> Solidify knowledge by explaining concepts to others
+<br><br>
+                        I typically dedicate 5-10 hours per week to learning, split between structured courses and hands-on experimentation.
+</p>
+</div>
+</div>
+
+<!-- Projects Questions -->
+<div class="faq-item" data-category="projects">
+<div class="faq-question">
+<span>How can I access the source code for your projects?</span>
+<i class="fas fa-chevron-down faq-icon"></i>
+</div>
+<div class="faq-answer">
+<p>All my projects with publicly available source code are hosted on GitHub. You can:
+<br><br>
+                        1. <strong>Visit my GitHub profile</strong> directly using the link in the projects section
+<br>
+                        2. <strong>Browse individual repositories</strong> for each project
+<br>
+                        3. <strong>Check the README files</strong> for setup instructions and documentation
+<br>
+                        4. <strong>Clone repositories</strong> to run projects locally
+<br>
+                        5. <strong>Review commit history</strong> to see the development process
+<br><br>
+                        Some projects may have live demos or deployed versions linked in their documentation.
+</p>
+</div>
+</div>
+
+<!-- Skills Questions -->
+<div class="faq-item" data-category="skills">
+<div class="faq-question">
+<span>What's your experience with team collaboration and version control?</span>
+<i class="fas fa-chevron-down faq-icon"></i>
+</div>
+<div class="faq-answer">
+<p>I have extensive experience with collaborative development:
+<br><br>
+<strong>Version Control:</strong> 5+ years with Git, including branching strategies (Git Flow), pull requests, code reviews, and conflict resolution
+<br>
+<strong>Team Workflows:</strong> Experience with Agile/Scrum methodologies, daily standups, sprint planning, and retrospectives
+<br>
+<strong>Collaboration Tools:</strong> Proficient with GitHub, GitLab, JIRA, Confluence, Slack, and Microsoft Teams
+<br>
+<strong>Code Quality:</strong> Familiar with code review processes, CI/CD pipelines, automated testing, and documentation standards
+<br><br>
+                        I believe effective communication and clean code practices are essential for successful team projects.
+</p>
+</div>
+</div>
+
+<!-- Website Questions -->
+<div class="faq-item" data-category="website">
+<div class="faq-question">
+<span>Is this website responsive and mobile-friendly?</span>
+<i class="fas fa-chevron-down faq-icon"></i>
+</div>
+<div class="faq-answer">
+<p>Yes, absolutely! This website is fully responsive and designed with a mobile-first approach:
+<br><br>
+<strong>Responsive Design:</strong> Uses CSS Grid, Flexbox, and media queries to adapt to all screen sizes
+<br>
+<strong>Mobile Optimization:</strong> Touch-friendly interfaces, appropriate font sizes, and optimized layouts for small screens
+<br>
+<strong>Performance:</strong> Optimized images, minimal dependencies, and efficient CSS/JavaScript
+<br>
+<strong>Cross-browser Compatibility:</strong> Tested on Chrome, Firefox, Safari, and Edge
+<br>
+<strong>Accessibility:</strong> Semantic HTML, proper contrast ratios, and keyboard navigation support
+<br><br>
+                        Try resizing your browser window or accessing the site on different devices to see the responsive design in action!
+</p>
+</div>
+</div>
+
+<!-- Personal Questions -->
+<div class="faq-item" data-category="personal">
+<div class="faq-question">
+<span>What are your career goals for the next 2-3 years?</span>
+<i class="fas fa-chevron-down faq-icon"></i>
+</div>
+<div class="faq-answer">
+<p>My career goals are focused on continuous growth and impact:
+<br><br>
+<strong>Technical Growth:</strong> Deepen expertise in cloud architecture (AWS/Azure), master DevOps practices, and explore blockchain development
+<br>
+<strong>Leadership Development:</strong> Move toward technical leadership roles, mentor junior developers, and contribute to architectural decisions
+<br>
+<strong>Project Impact:</strong> Work on projects with significant scale or social impact, preferably in fintech, healthcare, or education technology
+<br>
+<strong>Community Contribution:</strong> Increase open-source contributions, speak at developer conferences, and write technical articles
+<br>
+<strong>Specialization:</strong> Further specialize in either AI/ML applications or scalable distributed systems
+</p>
+</div>
+</div>
+
+<!-- Projects Questions -->
+<div class="faq-item" data-category="projects">
+<div class="faq-question">
+<span>What was the most challenging project you've worked on and what did you learn from it?</span>
+<i class="fas fa-chevron-down faq-icon"></i>
+</div>
+<div class="faq-answer">
+<p>The most challenging project was a real-time data processing system for financial analytics:
+<br><br>
+<strong>Challenges:</strong> Processing 10,000+ transactions per second, ensuring data consistency, and maintaining sub-second response times
+<br>
+<strong>Solution:</strong> Used Apache Kafka for message queuing, Redis for caching, and microservices architecture for scalability
+<br>
+<strong>Key Learnings:</strong>
+<br>
+                        1. Importance of proper system architecture from the beginning
+<br>
+                        2. Value of comprehensive monitoring and logging
+<br>
+                        3. Need for rigorous testing at scale (not just unit tests)
+<br>
+                        4. Communication challenges in distributed systems
+<br>
+                        5. Balancing performance optimization with code maintainability
+<br><br>
+                        This project taught me that sometimes the simplest solution is the most robust one.
+</p>
+</div>
+</div>
+</div>
+
+<div class="contact-promo">
+<h2>Still Have Questions?</h2>
+<p>If you couldn't find the answer you were looking for, or if you have a specific inquiry about collaboration, job opportunities, or technical consultations, please don't hesitate to reach out. I typically respond within 24-48 hours.</p>
+<a href="#" class="contact-btn">Get In Touch</a>
+</div>
+</div>
+
+<script>
+        // FAQ Toggle Functionality
+document.querySelectorAll('.faq-question').forEach(question => {
+question.addEventListener('click', () => {
+const item = question.parentElement;
+item.classList.toggle('active');
+            });
+        });
+
+        // Search Functionality
+constsearchBox = document.querySelector('.search-box');
+searchBox.addEventListener('input', function() {
+constsearchTerm = this.value.toLowerCase();
+constfaqItems = document.querySelectorAll('.faq-item');
+
+faqItems.forEach(item => {
+const question = item.querySelector('.faq-question span').textContent.toLowerCase();
+const answer = item.querySelector('.faq-answer').textContent.toLowerCase();
+
+                if (question.includes(searchTerm) || answer.includes(searchTerm)) {
+item.style.display = 'block';
+                    // Highlight matching text
+highlightText(item, searchTerm);
+                } else {
+item.style.display = 'none';
+                }
+            });
+        });
+
+        // Category Filtering
+document.querySelectorAll('.category-btn').forEach(button => {
+button.addEventListener('click', function() {
+                // Remove active class from all buttons
+document.querySelectorAll('.category-btn').forEach(btn => {
+btn.classList.remove('active');
+                });
+
+                // Add active class to clicked button
+this.classList.add('active');
+
+const category = this.getAttribute('data-category');
+constfaqItems = document.querySelectorAll('.faq-item');
+
+faqItems.forEach(item => {
+                    if (category === 'all' || item.getAttribute('data-category') === category) {
+item.style.display = 'block';
+                    } else {
+item.style.display = 'none';
+                    }
+                });
+            });
+        });
+
+        // Function to highlight search text
+        function highlightText(element, searchTerm) {
+            if (!searchTerm) return;
+
+constquestionSpan = element.querySelector('.faq-question span');
+constanswerDiv = element.querySelector('.faq-answer');
+
+            // Reset previous highlights
+constquestionText = questionSpan.textContent;
+constanswerText = answerDiv.textContent;
+
+            // Create highlighted versions
+consthighlightedQuestion = questionText.replace(
+                new RegExp(searchTerm, 'gi'),
+                match => `<span style="background-color: rgba(255, 154, 158, 0.3); padding: 2px 5px; border-radius: 3px;">${match}</span>`
+            );
+
+consthighlightedAnswer = answerText.replace(
+                new RegExp(searchTerm, 'gi'),
+                match => `<span style="background-color: rgba(255, 154, 158, 0.3); padding: 2px 5px; border-radius: 3px;">${match}</span>`
+            );
+
+            // Update HTML
+questionSpan.innerHTML = highlightedQuestion;
+
+            // For answer, we need to be careful not to break HTML structure
+const paragraphs = answerDiv.querySelectorAll('p');
+            if (paragraphs.length> 0) {
+paragraphs.forEach(p => {
+p.innerHTML = p.textContent.replace(
+                        new RegExp(searchTerm, 'gi'),
+                        match => `<span style="background-color: rgba(255, 154, 158, 0.3); padding: 2px 5px; border-radius: 3px;">${match}</span>`
+                    );
+                });
+            }
+        }
+
+        // Reset highlights when search is cleared
+searchBox.addEventListener('search', function() {
+            if (!this.value) {
+document.querySelectorAll('.faq-item').forEach(item => {
+constquestionSpan = item.querySelector('.faq-question span');
+constanswerDiv = item.querySelector('.faq-answer');
+
+                    // Restore original text (remove HTML tags)
+questionSpan.textContent = questionSpan.textContent;
+
+const paragraphs = answerDiv.querySelectorAll('p');
+paragraphs.forEach(p => {
+p.textContent = p.textContent;
+                    });
+                });
+            }
+        });
+
+        // Auto-open first FAQ item
+document.querySelector('.faq-item').classList.add('active');
+</script>
+</body>
+</html>
