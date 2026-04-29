@@ -56,17 +56,17 @@
         }
 
         /* Navigation Styles */
-navul {
+nav ul {
             display: flex;
             list-style: none;
             gap: 2.5rem;
         }
 
-navul li {
+nav ul li {
             position: relative;
         }
 
-navul li a {
+nav ul li a {
             color: white;
             text-decoration: none;
             font-size: 1.1rem;
@@ -75,11 +75,11 @@ navul li a {
             transition: color 0.3s ease;
         }
 
-navul li a:hover {
+nav ul li a:hover {
             color: #ff9a9e;
         }
 
-navul li a::after {
+nav ul li a::after {
             content: '';
             position: absolute;
             width: 0;
@@ -91,7 +91,7 @@ navul li a::after {
             border-radius: 2px;
         }
 
-navul li a:hover::after {
+nav ul li a:hover::after {
             width: 100%;
         }
 
