@@ -356,7 +356,7 @@ navul li a:hover::after {
                 margin-bottom: 0.5rem;
             }
 
-navul {
+nav ul {
                 gap: 1.5rem;
                 margin-top: 0.5rem;
             }
@@ -371,7 +371,7 @@ navul {
         }
 
         @media (max-width: 480px) {
-navul {
+nav ul {
                 flex-direction: column;
                 align-items: center;
                 gap: 1rem;
