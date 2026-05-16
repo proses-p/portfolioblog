@@ -688,25 +688,26 @@ p.innerHTML = p.textContent.replace(
         }
 
         // Reset highlights when search is cleared
-searchBox.addEventListener('search', function() {
+        searchBox.addEventListener('search', function() {
             if (!this.value) {
-document.querySelectorAll('.faq-item').forEach(item => {
-constquestionSpan = item.querySelector('.faq-question span');
-constanswerDiv = item.querySelector('.faq-answer');
+                document.querySelectorAll('.faq-item').forEach(item => {
+                    const questionSpan = item.querySelector('.faq-question span');
+                    const answerDiv = item.querySelector('.faq-answer');
 
                     // Restore original text (remove HTML tags)
-questionSpan.textContent = questionSpan.textContent;
+                    questionSpan.textContent = questionSpan.textContent;
 
-const paragraphs = answerDiv.querySelectorAll('p');
-paragraphs.forEach(p => {
-p.textContent = p.textContent;
+                    const paragraphs = answerDiv.querySelectorAll('p');
+                    paragraphs.forEach(p => {
+                        p.textContent = p.textContent;
                     });
                 });
             }
         });
 
         // Auto-open first FAQ item
-document.querySelector('.faq-item').classList.add('active');
+        document.querySelector('.faq-item').classList.add('active');
 </script>
+<script src="script.js" defer></script>
 </body>
 </html>
