@@ -80,3 +80,113 @@ document.addEventListener('DOMContentLoaded', () => {
         updateNav();
     }
 });
+
+// Sidebar / hamburger toggle
+document.addEventListener('DOMContentLoaded', () => {
+    const menuToggle = document.querySelector('.menu-toggle');
+    const sidebar = document.querySelector('.sidebar');
+    const overlay = document.querySelector('.overlay');
+    const sidebarClose = document.querySelector('.sidebar-close');
+
+    const closeSidebar = () => {
+        if (!sidebar) return;
+        sidebar.classList.remove('open');
+        overlay && overlay.classList.remove('active');
+        sidebar.setAttribute('aria-hidden', 'true');
+    };
+
+    const openSidebar = () => {
+        if (!sidebar) return;
+        sidebar.classList.add('open');
+        overlay && overlay.classList.add('active');
+        sidebar.setAttribute('aria-hidden', 'false');
+    };
+
+    menuToggle && menuToggle.addEventListener('click', openSidebar);
+    sidebarClose && sidebarClose.addEventListener('click', closeSidebar);
+    overlay && overlay.addEventListener('click', closeSidebar);
+
+    document.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape') closeSidebar();
+    });
+});
+
+// Move header nav links into the sidebar so sidebar is the single nav source
+document.addEventListener('DOMContentLoaded', () => {
+    const sidebarList = document.querySelector('.sidebar ul');
+    if (!sidebarList) return;
+
+    // find all header nav lists
+    const headerNavLists = document.querySelectorAll('header nav ul');
+    headerNavLists.forEach(list => {
+        const items = Array.from(list.querySelectorAll('li'));
+        items.forEach(li => {
+            const a = li.querySelector('a');
+            if (!a) return;
+            const href = a.getAttribute('href');
+            // avoid duplicates by href
+            const exists = sidebarList.querySelector(`a[href="${href}"]`);
+            if (!exists) {
+                const clone = li.cloneNode(true);
+                sidebarList.appendChild(clone);
+            }
+        });
+        // clear header nav to avoid duplicate presentation
+        list.innerHTML = '';
+    });
+});
+
+// Animated binary rain and code snippets in profile card background
+document.addEventListener('DOMContentLoaded', () => {
+    const binaryRain = document.querySelector('.binary-rain');
+    const codeSnippets = document.querySelector('.code-snippets');
+    if (!binaryRain || !codeSnippets) return;
+
+    // Code snippets to float across the background
+    const codeLines = [
+        'function encrypt() { }',
+        'const cipher = new Crypto();',
+        'if (secure) { activate(); }',
+        'while (true) { protect(); }',
+        'data.map(x => x.encode());',
+        'async init() { await load(); }',
+        'class DevOps { build() {} }',
+        'socket.emit("ready");'
+    ];
+
+    // Create binary rain characters
+    const binaryCount = 25;
+    for (let i = 0; i < binaryCount; i++) {
+        const char = document.createElement('div');
+        char.className = 'binary-char';
+        char.textContent = Math.random() > 0.5 ? '1' : '0';
+        char.style.left = Math.random() * 100 + '%';
+        char.style.animationDuration = (3 + Math.random() * 4) + 's';
+        char.style.animationDelay = Math.random() * 2 + 's';
+        binaryRain.appendChild(char);
+    }
+
+    // Create floating code snippets
+    const codeCount = 6;
+    for (let i = 0; i < codeCount; i++) {
+        const code = document.createElement('div');
+        code.className = 'code-line';
+        code.textContent = codeLines[Math.floor(Math.random() * codeLines.length)];
+        code.style.top = Math.random() * 80 + 10 + '%';
+        code.style.animationDuration = (6 + Math.random() * 4) + 's';
+        code.style.animationDelay = Math.random() * 3 + 's';
+        codeSnippets.appendChild(code);
+    }
+
+    // Regenerate elements periodically for continuous animation
+    setInterval(() => {
+        // Randomly regenerate binary characters
+        if (Math.random() > 0.7) {
+            const existingChars = binaryRain.querySelectorAll('.binary-char');
+            if (existingChars.length > 0) {
+                const randomChar = existingChars[Math.floor(Math.random() * existingChars.length)];
+                randomChar.textContent = Math.random() > 0.5 ? '1' : '0';
+            }
+        }
+    }, 2000);
+});

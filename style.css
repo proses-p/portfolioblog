@@ -118,25 +118,28 @@ nav ul li a:hover::after {
         .profile-card {
             flex: 1;
             min-width: 300px;
-            background-color: rgba(255, 255, 255, 0.05);
+            background: transparent;
             border-radius: 15px;
             box-shadow: 0 8px 24px rgba(0, 0, 0, 0.25);
             overflow: hidden;
             transition: transform 0.3s ease, box-shadow 0.3s ease;
+            position: relative;
         }
-
         .profile-card:hover {
             transform: translateY(-5px);
             box-shadow: 0 12px 25px rgba(0, 0, 0, 0.15);
         }
 
         .profile-header {
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            background: rgba(255, 255, 255, 0.15);
+    backdrop-filter: blur(15px);
+    -webkit-backdrop-filter: blur(15px);
             padding: 2rem;
             color: white;
             text-align: center;
+            position: relative;
+            z-index: 1;
         }
-
         .profile-header h2 {
             font-size: 2rem;
             margin-bottom: 0.5rem;
@@ -178,6 +181,11 @@ nav ul li a:hover::after {
 
         .profile-info {
             padding: 2rem;
+            background: rgba(255, 255, 255, 0.15);
+    backdrop-filter: blur(15px);
+    -webkit-backdrop-filter: blur(15px);
+            position: relative;
+            z-index: 1;
         }
 
         .reveal {
@@ -610,3 +618,182 @@ nav ul {
                 grid-template-columns: 1fr;
             }
         }
+
+        /* Sidebar / Hamburger styles */
+        .menu-toggle {
+            position: fixed;
+            right: 1rem;
+            top: 1rem;
+            z-index: 220;
+            width: 48px;
+            height: 48px;
+            display: inline-flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            gap: 5px;
+            padding: 8px;
+            background: rgba(8,12,20,0.95);
+            border-radius: 14px;
+            border: 1px solid rgba(255,255,255,0.15);
+            cursor: pointer;
+            box-shadow: 0 12px 30px rgba(0,0,0,0.35);
+        }
+        .menu-toggle .bar {
+            width: 24px;
+            height: 3px;
+            background: #fff;
+            border-radius: 999px;
+            transition: transform .25s ease, opacity .2s ease;
+        }
+        .sidebar {
+            position: fixed;
+            left: -340px;
+            top: 0;
+            width: 300px;
+            height: 100%;
+            background: linear-gradient(180deg, rgba(18,26,37,0.98), rgba(12,16,22,0.98));
+            box-shadow: 6px 0 30px rgba(0,0,0,0.6);
+            z-index: 230;
+            transition: left .32s cubic-bezier(.2,.9,.2,1);
+            padding: 2.4rem 1.2rem;
+            overflow-y: auto;
+        }
+        .sidebar.open { left: 0; }
+        .sidebar .sidebar-close {
+            position: absolute;
+            right: 12px;
+            top: 12px;
+            background: none;
+            border: none;
+            color: #fff;
+            font-size: 1.6rem;
+            cursor: pointer;
+        }
+        .sidebar ul { list-style: none; display: block; padding: 2.6rem 0 4rem 0; margin: 0; }
+        .sidebar ul li { display: block; margin-bottom: 0.9rem; }
+        .sidebar a { color: #e6e9ef; text-decoration: none; font-weight: 600; display: block; padding: 0.6rem 0; border-radius: 6px; }
+        .sidebar a:hover { background: rgba(255,154,158,0.06); color: #ff9a9e; padding-left: 6px; }
+        .overlay { position: fixed; inset: 0; background: rgba(0,0,0,0.48); opacity: 0; pointer-events: none; transition: opacity .25s ease; z-index: 225; }
+        .overlay.active { opacity: 1; pointer-events: auto; }
+
+        /* Hide header nav since sidebar is primary navigation */
+        header nav { display: none; }
+
+        /* Keep sidebar hidden on all screen sizes until opened */
+        .sidebar {
+            left: -320px;
+        }
+
+        .menu-toggle:hover {
+            transform: scale(1.03);
+            background: rgba(255,255,255,0.12);
+        }
+
+        .menu-toggle:focus-visible {
+            outline: 2px solid #ff9a9e;
+            outline-offset: 3px;
+        }
+
+        /* Home page SVG/code monitors background */
+        .home-bg {
+            background-image: radial-gradient(circle at top left, #0b0f16 0%, #06080b 40%, #020305 100%), url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 600"><rect width="100%" height="100%" fill="%23060b0f"/><g fill="%23121a25"><rect x="40" y="60" rx="8" width="320" height="200"/><rect x="420" y="40" rx="8" width="360" height="240"/><rect x="820" y="90" rx="8" width="300" height="180"/></g><g stroke="%2345f3ff" stroke-width="6" stroke-linecap="round"><line x1="70" y1="110" x2="330" y2="110"/><line x1="70" y1="140" x2="300" y2="140"/><line x1="440" y1="100" x2="740" y2="100"/><line x1="440" y1="130" x2="780" y2="130"/><line x1="840" y1="140" x2="1060" y2="140"/><line x1="840" y1="170" x2="1080" y2="170"/></g></svg>');
+            background-size: cover;
+            background-repeat: no-repeat;
+            background-position: center center;
+        }
+
+        /* Profile Card Animated Background */
+        .card-animated-bg {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            border-radius: 15px;
+            overflow: hidden;
+            z-index: 0;
+            opacity: 0.7;
+            pointer-events: none;
+            background: linear-gradient(135deg, rgba(0, 50, 100, 0.3) 0%, rgba(0, 100, 150, 0.2) 100%), 
+                        linear-gradient(45deg, rgba(10, 20, 50, 0.4) 0%, rgba(5, 10, 25, 0.3) 100%);
+        }
+
+        .card-bg-lines {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            animation: lineGlow 4s ease-in-out infinite;
+        }
+
+        @keyframes lineGlow {
+            0%, 100% { opacity: 0.5; }
+            50% { opacity: 0.8; }
+        }
+
+        .binary-rain {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            font-family: 'Courier New', monospace;
+            font-size: 16px;
+            color: #00d4ff;
+            overflow: hidden;
+        }
+
+        .code-snippets {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+        }
+
+        .binary-char {
+            position: absolute;
+            opacity: 0.6;
+            text-shadow: 0 0 12px #00d4ff, 0 0 20px rgba(0, 212, 255, 0.5);
+            animation: fall linear infinite;
+        }
+
+        @keyframes fall {
+            0% {
+                transform: translateY(-10px);
+                opacity: 0.6;
+            }
+            50% {
+                opacity: 0.8;
+            }
+            100% {
+                transform: translateY(100%);
+                opacity: 0;
+            }
+        }
+
+        .code-line {
+            position: absolute;
+            font-family: 'Courier New', monospace;
+            font-size: 12px;
+            color: #00d4ff;
+            white-space: nowrap;
+            opacity: 0.5;
+            text-shadow: 0 0 8px #00d4ff, 0 0 12px rgba(0, 212, 255, 0.4);
+            animation: codeFloat linear infinite;
+        }
+
+        @keyframes codeFloat {
+            0% {
+                opacity: 0;
+                transform: translateX(-20px);
+            }
+            20% {
+                opacity: 0.5;
+            }
+            80% {
+                opacity: 0.5;
+            }
+            100% {
+                opacity: 0;
+                transform: translateX(100%);
+            }
+        }
+

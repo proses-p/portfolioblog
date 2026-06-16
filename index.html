@@ -9,11 +9,34 @@
 
             <meta name="google-site-verification" content="19rC9ZEmRiGr73bI4goP06VHU4x5abJ1H4jA_WzassY" />
         </head>
-        <body>
+        <body class="home-bg">
+    <!-- Sidebar & Hamburger -->
+    <button class="menu-toggle" aria-label="Open menu">
+        <span class="bar"></span>
+        <span class="bar"></span>
+        <span class="bar"></span>
+    </button>
+    <nav class="sidebar" aria-hidden="true">
+        <div class="sidebar-inner">
+            <button class="sidebar-close" aria-label="Close menu">&times;</button>
+            <ul>
+                <li><a href="index.html">Home</a></li>
+                <li><a href="index.html#services">Services</a></li>
+                <li><a href="portfolio.html">Portfolio</a></li>
+                <li><a href="about.html">About</a></li>
+                <li><a href="support.html">Contact</a></li>
+                <li><a href="faqs.html">FAQ</a></li>
+                <li><a href="privacy.html">Privacy</a></li>
+                <li><a href="terms.html">Terms</a></li>
+                <li><a href="sitemap.html">Sitemap</a></li>
+            </ul>
+        </div>
+    </nav>
+    <div class="overlay"></div>
     <!-- Header Section -->
             <header>
                <div class="logo">
-                   <h1>ProsesFolio</h1>
+                   <h1>Developer Proses</h1>
                </div>
                 <nav>
                    <ul>
@@ -28,11 +51,35 @@
                 <section class="profile-section">
         <!-- Profile Card -->
                     <div class="profile-card">
+                        <!-- Animated Futuristic Background -->
+                        <div class="card-animated-bg">
+                            <svg class="card-bg-lines" viewBox="0 0 400 300" preserveAspectRatio="none">
+                                <defs>
+                                    <filter id="glow">
+                                        <feGaussianBlur stdDeviation="2" result="coloredBlur"/>
+                                        <feMerge>
+                                            <feMergeNode in="coloredBlur"/>
+                                            <feMergeNode in="SourceGraphic"/>
+                                        </feMerge>
+                                    </filter>
+                                </defs>
+                                <line x1="0" y1="50" x2="400" y2="50" stroke="#00d4ff" stroke-width="1" opacity="0.3" filter="url(#glow)"/>
+                                <line x1="0" y1="100" x2="400" y2="100" stroke="#0099ff" stroke-width="1" opacity="0.25"/>
+                                <line x1="0" y1="150" x2="400" y2="150" stroke="#00d4ff" stroke-width="1" opacity="0.3" filter="url(#glow)"/>
+                                <line x1="0" y1="200" x2="400" y2="200" stroke="#0099ff" stroke-width="1" opacity="0.25"/>
+                                <line x1="50" y1="0" x2="50" y2="300" stroke="#00d4ff" stroke-width="0.8" opacity="0.2"/>
+                                <line x1="150" y1="0" x2="150" y2="300" stroke="#00d4ff" stroke-width="0.8" opacity="0.2"/>
+                                <line x1="250" y1="0" x2="250" y2="300" stroke="#0099ff" stroke-width="0.8" opacity="0.15"/>
+                                <line x1="350" y1="0" x2="350" y2="300" stroke="#00d4ff" stroke-width="0.8" opacity="0.2"/>
+                            </svg>
+                            <div class="binary-rain"></div>
+                            <div class="code-snippets"></div>
+                        </div>
                         <div class="profile-header">
-                            <h2>Proses Projectus Mpinzire</h2>
-                            <p>Programmer & AI/ML/DL Fullstack</p>
+                            <h2>Developer Proses Projectus</h2>
+                            <p>Developer & AI/ML/DL Fullstack</p>
                             <div class="profile-image">
-                                <img src="images/IMG_20250808_164707_886 (1).jpg" alt="Profile Picture">
+                                <img src="images/IMG_20250808_164707_886 (1).jpg" alt="Developer Proses Projectus">
                             </div>
                         </div>
                         <div class="profile-info">
@@ -141,7 +188,7 @@
 <h3>CONTACT ADDRESS</h3>
 <ul>
 <li><a href="#"><i class="fas fa-map-marker-alt"></i> Mzumbe University POBOX 1, Morogoro</a></li>
-<li><a href="+255780686067"><i class="fas fa-phone"></i> +255 (780) 686-067</a></li>
+<li><a href="+255780686067/0655205839"><i class="fas fa-phone"></i> +255 (780) 686-067</a></li>
 <li><a href="mailto:prosesprojestus0@gmail.com"><i class="fas fa-envelope"></i> prosesprojestus0@gmail.com</a></li>
 <li><a href="#"><i class="fas fa-globe"></i> www.prosesfolio.com</a></li>
 </ul>
@@ -169,7 +216,7 @@
 </div>
 </div>
 <div class="copyright">
-<p>&copy; 2026 ProsesFolio. All Rights Reserved. | Designed with passion for data</p>
+<p>&copy; 2026 Developer Proses. All Rights Reserved. | Designed with passion for data</p>
 </div>
 </footer>
 <script src="script.js" defer></script>
