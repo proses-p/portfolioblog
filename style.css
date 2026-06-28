@@ -3,13 +3,14 @@
             margin: 0;
             padding: 0;
             box-sizing: border-box;
-            font-family: 'Albert Sans', sans-serif;
-            font-weight: 300;
+            
         }
 
         body {
             background: radial-gradient(circle at top left, #141821 0%, #090c12 35%, #020305 100%);
             color: #e6e9ef;
+            font-family: 'Albert Sans', sans-serif;
+            font-weight: 200;
             line-height: 1.6;
             min-height: 100vh;
         }
@@ -102,10 +103,21 @@ nav ul li a:hover::after {
             max-width: 1200px;
             margin: 2rem auto;
             padding: 2rem 1.5rem;
-            background: rgba(0, 0, 0, 0.80);
-            border: 1px solid rgba(255, 255, 255, 0.07);
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
             border-radius: 28px;
             box-shadow: 0 30px 90px rgba(0, 0, 0, 0.45);
+        }
+
+        .main-container a {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            color: #ff9a9e;
+            font-size: 22px;
+            text-decoration: none;
         }
 
         .profile-section {
